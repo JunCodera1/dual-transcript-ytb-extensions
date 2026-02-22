@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YT Bilingual Subtitle</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 280px;
+      min-height: 180px;
+      background: linear-gradient(145deg, #0a0a0f 0%, #12121e 50%, #0d0d18 100%);
+      color: #e8e8f0;
+      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      font-size: 13px;
+      padding: 16px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .header .icon {
+      font-size: 22px;
+      color: #00ffcc;
+      filter: drop-shadow(0 0 6px rgba(0, 255, 204, .4));
+    }
+
+    .header .title {
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: .5px;
+    }
+
+    .header .version {
+      font-size: 10px;
+      color: #666;
+      margin-left: 2px;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-weight: 500;
+    }
+
+    .status-badge.active {
+      background: rgba(0, 255, 204, .12);
+      color: #00ffcc;
+      border: 1px solid rgba(0, 255, 204, .25);
+    }
+
+    .status-badge.inactive {
+      background: rgba(255, 255, 255, .05);
+      color: #888;
+      border: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .status-badge.active .status-dot {
+      background: #00ffcc;
+      box-shadow: 0 0 6px rgba(0, 255, 204, .6);
+    }
+
+    .status-badge.inactive .status-dot {
+      background: #555;
+      animation: none;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: .4;
+      }
+    }
+
+    .toggle-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 255, 204, .3);
+      background: rgba(0, 255, 204, .08);
+      color: #00ffcc;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .3px;
+      transition: all .2s;
+      margin-bottom: 12px;
+    }
+
+    .toggle-btn:hover {
+      background: rgba(0, 255, 204, .15);
+      box-shadow: 0 4px 20px rgba(0, 255, 204, .15);
+      transform: translateY(-1px);
+    }
+
+    .toggle-btn:active {
+      transform: translateY(0);
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    .info-row span:last-child {
+      color: #ccc;
+      font-weight: 500;
+    }
+
+    .footer {
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, .06);
+      text-align: center;
+      font-size: 10px;
+      color: #444;
+    }
+
+    .footer kbd {
+      font-size: 9px;
+      padding: 1px 4px;
+      border: 1px solid #333;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, .04);
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <span class="icon">⬡</span>
+    <span class="title">Bilingual Sub <span class="version">v2</span></span>
+  </div>
+
+  <div class="status-row">
+    <span id="statusBadge" class="status-badge active">
+      <span class="status-dot"></span>
+      <span id="statusText">Active</span>
+    </span>
+    <span id="langLabel" style="font-size:11px;color:#888;">vi</span>
+  </div>
+
+  <button id="toggleBtn" class="toggle-btn">⏯ Toggle Subtitle</button>
+
+  <div class="info-row">
+    <span>📝 Transcript entries</span>
+    <span id="logCount">0</span>
+  </div>
+
+  <div class="footer">
+    <kbd>Alt+B</kbd> toggle &middot; <kbd>Alt+H</kbd> hide panel
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>
